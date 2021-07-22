@@ -1,8 +1,10 @@
 import scrapy
+from scrapy import Request
 
 
 class HerbaSpider(scrapy.Spider):
     name = 'herba'
+    allowed_domains = ['herba.lt']
     start_urls = ['https://www.herba.lt/uriage-dermatologine-kosmetika']
 
     def parse(self, response):
@@ -13,11 +15,19 @@ class HerbaSpider(scrapy.Spider):
         #         "text": product.css('a::text').get()
         #     }
 
+        # get every url of every product in a page.
+        #urlList = response.xpath('//h4[@class="product-name"]/a/@href').extract()
+        #print(urlList)
+
+        item = {}
+
         for product in response.xpath('//h4[@class="product-name"]'):
-            yield {
-                "text": product.xpath('a/text()').extract(),
-                "href": product.xpath('a').attrib['href'],
-            }
+            product_url = product.xpath('a').attrib['href']
+
+            item["title"] = product.xpath('a/text()').get()
+            item["href"] = product_url #product.xpath('a').attrib['href']
+            yield Request(product_url, callback=self.parse_product_page, meta={'item': item})
+
 
         # we now have product titles from the first page, let's scrape from another one
 
@@ -28,6 +38,10 @@ class HerbaSpider(scrapy.Spider):
         if next_page is not None:
             yield response.follow(next_page, callback=self.parse)
         
+    def parse_product_page(self, response):
+        print(response.xpath('//div[@class="product-name"]/h1/text()').get())# is response.meta['item']['title'])
+        item = response.meta['item']
+        yield item
 
 
 

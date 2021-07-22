@@ -17,11 +17,11 @@ NEWSPIDER_MODULE = 'uriage.spiders'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 
 # FEED EXPORT ENCODING
-FEED_EXPORT_ENCODING = 'utf-8'
+FEED_EXPORT_ENCODING = 'utf-8-sig'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
