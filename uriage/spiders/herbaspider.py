@@ -1,9 +1,12 @@
 import scrapy
 from scrapy import Request
 import re
-# from twisted.internet import reactor
-# from scrapy.crawler import CrawlerProcess
-# from scrapy.utils.log import configure_logging
+
+"""
+from twisted.internet import reactor
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.log import configure_logging
+"""
 
 
 class HerbaSpider(scrapy.Spider):
@@ -125,12 +128,17 @@ class EuroVaistineSpider(scrapy.Spider):
         item['description'] = description
         yield item
 
-#configure_logging()
-#process = CrawlerProcess()
-#process.crawl(HerbaSpider)
-#process.crawl(GintarineSpider)
-#d = process.join()
-##d.addBoth(lambda _: reactor.stop())
 
-#reactor.run()
-# process.start()
+"""
+configure_logging()
+process = CrawlerProcess()
+process.crawl(HerbaSpider)
+process.crawl(GintarineSpider)
+process.crawl(BenuSpider)
+process.crawl(EuroVaistineSpider)
+d = process.join()
+d.addBoth(lambda _: reactor.stop())
+
+reactor.run()
+process.start()
+"""
