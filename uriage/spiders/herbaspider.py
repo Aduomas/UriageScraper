@@ -37,7 +37,7 @@ class HerbaSpider(scrapy.Spider):
         item = response.meta['item']
         item['title'] = response.xpath('//div[@class="product-name"]/h1/text()').get() # title of the product, making sure it's the one we got url from.
         #item['href'] = response.request.url
-        item['price'] = re.findall(r"\d+,\d+ €", response.xpath('//p[@class="special-price"][1]/span[2]/text()').get())[0]
+        item['price'] = re.findall(r"\d+,\d+", response.xpath('//p[@class="special-price"][1]/span[2]/text()').get())[0] + '€'
         # we're only getting one part of the description, because others might vary
         # it's probably WISE to remove spaces and endlines when comparing it aswell.
         item['description'] = response.xpath('//div[@class="std tab-description"]/p[1]/text()').get() # + p[2] + p[3]
