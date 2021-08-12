@@ -1,10 +1,8 @@
 
 *.pyc
-gintarine.json
 uriage/spiders/__pycache__/herbaspider.cpython-39.pyc
 uriage/spiders/__pycache__/__init__.cpython-39.pyc
 uriage/__pycache__/settings.cpython-39.pyc
 uriage/__pycache__/__init__.cpython-39.pyc
-herba.json
-herba.csv
+*.csv
 *.json
